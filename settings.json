@@ -37,6 +37,7 @@
         "list": 
         [
             {
+                "colorScheme": "Campbell Powershell",
                 "font": 
                 {
                     "face": "CaskaydiaCove NF"
@@ -44,7 +45,8 @@
                 "guid": "{5fb123f1-af88-5b5c-8953-d14a8def1978}",
                 "hidden": false,
                 "name": "PowerShell",
-                "source": "Windows.Terminal.PowershellCore"
+                "source": "Windows.Terminal.PowershellCore",
+                "useAcrylic": true
             },
             {
                 "commandline": "powershell.exe",
@@ -298,5 +300,7 @@
             "white": "#C0C0C0",
             "yellow": "#808000"
         }
-    ]
+    ],
+    "useAcrylicInTabRow": true,
+    "theme": "system"
 }
