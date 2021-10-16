@@ -302,5 +302,6 @@
         }
     ],
     "useAcrylicInTabRow": true,
-    "theme": "system"
+    "theme": "system",
+    "showTabsInTitlebar": true
 }
