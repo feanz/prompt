@@ -1,4 +1,6 @@
-#Make sure you have git for windows first
+# Install git for windows https://git-scm.com/download/win
+# Install the windows terminal from the windows store 
+# Install and the latest version of powershell https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows
 
 Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 
