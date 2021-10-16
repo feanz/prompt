@@ -7,7 +7,7 @@
 	name = Richard Forrest
 	email = richard.a.forrest@gmail.com
 [core]
-	editor = 'C:/Program Files (x86)/vim/vim80/vim.exe'
+	editor = 'C:/Program Files/vim/vim80/vim.exe'
 	autocrlf = true
 [push]
 	default = current
