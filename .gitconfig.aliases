@@ -65,7 +65,7 @@
     save = !git add -A && git commit -m 'SAVEPOINT'
     set-origin = remote set-url origin
     set-upstream = remote set-url upstream
-    st = status -s
+    st = status
     stashes = stash list
     sync = !git pull --rebase && git push
     undo = reset HEAD~1 --mixed
