@@ -1,0 +1,29 @@
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[user]
+	name = Richard Forrest
+	email = richard.a.forrest@gmail.com
+[core]
+	editor = 'C:/Program Files (x86)/vim/vim80/vim.exe'
+	autocrlf = true
+[push]
+	default = current
+[merge]
+	tool = kdiff3
+[mergetool "kdiff3"]
+	path = C:/Program Files/KDiff3/kdiff3.exe
+	trustExitCode = false
+[diff]
+	guitool = kdiff3
+[difftool "kdiff3"]
+	path = C:/Program Files/KDiff3/kdiff3.exe
+	trustExitCode = false
+[mergetool]
+	keepBackup = false
+[include]
+	path = ~/.gitconfig.aliases
+[credential]
+	helper = manager-core
