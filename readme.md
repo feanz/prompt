@@ -2,7 +2,7 @@
 
 This repo has all the configuration needed to setup my windows terminal. 
 
-![prompt](./prompt.png)
+![prompt](./prompt.PNG)
 
 1. Install git for windows https://git-scm.com/download/win
 1. Install the windows terminal from the windows store 
