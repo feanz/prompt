@@ -30,22 +30,24 @@
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
-    "defaultProfile": "{5fb123f1-af88-5b5c-8953-d14a8def1978}",
+    "defaultProfile": "{b91fd203-8a88-43a0-9316-07b1542e6981}",
     "profiles": 
     {
         "defaults": {},
         "list": 
         [
             {
+                "acrylicOpacity": 0.14000000000000001,
                 "colorScheme": "Campbell Powershell",
+                "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
                 "font": 
                 {
                     "face": "CaskaydiaCove NF"
                 },
-                "guid": "{5fb123f1-af88-5b5c-8953-d14a8def1978}",
-                "hidden": false,
+                "guid": "{b91fd203-8a88-43a0-9316-07b1542e6981}",
+                "icon": "ms-appx:///ProfileIcons/pwsh.png",
                 "name": "PowerShell",
-                "source": "Windows.Terminal.PowershellCore",
+                "startingDirectory": "%USERPROFILE%",
                 "useAcrylic": true
             },
             {
@@ -67,17 +69,6 @@
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "Command\u00a0Prompt"
-            },
-            {
-                "commandline": "wsl ~",
-                "font": 
-                {
-                    "face": "CaskaydiaCove NF"
-                },
-                "guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
-                "hidden": false,
-                "name": "Ubuntu",
-                "source": "Windows.Terminal.Wsl"
             },
             {
                 "font": 
@@ -301,7 +292,6 @@
             "yellow": "#808000"
         }
     ],
-    "useAcrylicInTabRow": true,
-    "theme": "system",
-    "showTabsInTitlebar": true
+    "showTabsInTitlebar": true,
+    "theme": "system"
 }
