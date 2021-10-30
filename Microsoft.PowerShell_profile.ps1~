@@ -43,9 +43,6 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 
-# Set bash style tab completion
-Set-PSReadlineKeyHandler -Key Tab -Function Complete
-
 # This key handler shows the entire or filtered history using Out-GridView. The
 # typed text is used as the substring pattern for filtering. A selected command
 # is inserted to the command line without invoking. Multiple command selection
