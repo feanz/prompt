@@ -6,7 +6,7 @@ if ($host.Name -eq 'ConsoleHost')
     Import-Module PSReadLine
 }
 
-oh-my-posh --init --shell pwsh --config C:/Github/prompt/oh-my-posh.json | Invoke-Expression
+oh-my-posh --init --shell pwsh --config C:/git/prompt/oh-my-posh.json | Invoke-Expression
 
 Import-Module Terminal-Icons
 Import-Module z
