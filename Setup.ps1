@@ -2,12 +2,14 @@
 
 Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 
+choco feature enable -n allowGlobalConfirmation
+
 choco install git
 choco install powershell.portable
-winget install JanDeDobbeleer.OhMyPosh
-winget install vim.vim
-winget install KDE.KDiff3
-winget install Github.cli --source winget
+choco install oh-my-posh
+choco install vim
+choco install kdiff3
+choco install gh
 choco install bat
 
 Install-Module PSReadline 
