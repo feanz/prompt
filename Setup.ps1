@@ -13,6 +13,6 @@ choco install gh
 choco install bat
 
 Install-Module PSReadline 
-choco install terminal-icons.powershell
-choco install zoxide
+Install-Module terminal-icons.powershell
+Install-Module z
 
