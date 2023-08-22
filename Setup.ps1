@@ -1,7 +1,9 @@
+#Update this to be chocolatey meta package
+
 Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 
-winget install --id Git.Git -e --source winget
-winget install --id Microsoft.Powershell --source winget
+choco install git
+choco install powershell.portable
 winget install JanDeDobbeleer.OhMyPosh
 winget install vim.vim
 winget install KDE.KDiff3
