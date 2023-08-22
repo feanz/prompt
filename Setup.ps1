@@ -5,7 +5,7 @@ Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 choco feature enable -n allowGlobalConfirmation
 
 choco install git
-choco install powershell.portable
+choco install powershell-core
 choco install oh-my-posh
 choco install vim
 choco install kdiff3
@@ -13,6 +13,6 @@ choco install gh
 choco install bat
 
 Install-Module PSReadline 
-Install-Module Terminal-Icons
-Install-Module z
+choco install terminal-icons.powershell
+choco install zoxide
 
