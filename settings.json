@@ -12,7 +12,7 @@
         },
         {
             "command": "find",
-            "keys": "ctrl+shift+f"
+            "keys": "ctrl+f"
         },
         {
             "command": "paste",
