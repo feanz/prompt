@@ -14,10 +14,10 @@
     abort = rebase --abort
     aliases = "!git config -l | grep alias | cut -c 7-"
     amend = commit -a --amend
-    # Deletes all branches merged specified branch (or master if no branch is specified)
-    bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
+    # Deletes all branches merged specified branch (or main if no branch is specified)
+    bclean = "!f() { git branch --merged ${1-main} | grep -v " ${1-main}$" | xargs git branch -d; }; f"
     # Switches to specified branch (or master if no branch is specified), runs git up, then runs bclean.
-    bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+    bdone = "!f() { git checkout ${1-main} && git up && git bclean ${1-main}; }; f"
     # Lists all branches including remote branches
     br = branch -a
     branches = branch -a
