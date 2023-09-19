@@ -4,6 +4,8 @@ Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 
 choco feature enable -n allowGlobalConfirmation
 
+choco install nerd-fonts-cascadiacode
+choco install microsoft-windows-terminal
 choco install git
 choco install powershell-core
 choco install oh-my-posh
