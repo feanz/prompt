@@ -15,6 +15,6 @@ choco install gh
 choco install bat
 
 Install-Module PSReadline 
-Install-Module terminal-icons.powershell
+Install-Module Terminal-Icons
 Install-Module z
 
