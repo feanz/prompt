@@ -49,17 +49,7 @@
                 "name": "PowerShell",
                 "startingDirectory": "%USERPROFILE%",
                 "useAcrylic": true
-            },
-            {
-                "commandline": "powershell.exe",
-                "font": 
-                {
-                    "face": "CaskaydiaCove Nerd Font"
-                },
-                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "hidden": true,
-                "name": "Windows\u00a0PowerShell"
-            },
+            },          
             {
                 "commandline": "cmd.exe",
                 "font": 
