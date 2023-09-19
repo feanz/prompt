@@ -16,5 +16,5 @@ choco install bat
 
 Install-Module PSReadline 
 Install-Module Terminal-Icons
-Install-Module z
+Install-Module z -AllowClobber
 
