@@ -14,7 +14,6 @@ choco install kdiff3
 choco install gh
 choco install bat
 
-Install-Module PSReadline 
 Install-Module Terminal-Icons
 Install-Module z -AllowClobber
 
