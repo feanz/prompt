@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Claude Code statusLine — complements oh-my-posh powerline theme
+# Claude Code statusLine — Powerline/Nerd Font variant
+# Requires a Nerd Font (e.g. Oh My Posh default fonts) in the terminal.
 # Color palette matches the user's oh-my-posh config:
 #   black:#262B44  blue:#4B95E9  green:#59C9A5
 #   orange:#F07623 red:#D81E5B  white:#E0DEF4  yellow:#F3AE35
@@ -20,12 +21,15 @@ RED="216 30 91"
 WHITE="224 222 244"
 YELLOW="243 174 53"
 
-# Powerline separators and icons (using bash $'...' for proper encoding)
-SEP=$'\ue0b0'
-ICON_SPARK=$'\U000f0016'
-ICON_FOLDER=$'\uf07b'
-ICON_BOLT=$'\uf0e7'
-ICON_EYE=$'\uf06e'
+# Powerline separator (U+E0B0 — solid right-pointing arrow)
+SEP=$'\xee\x82\xb0'
+# Nerd Font icons (UTF-8 bytes embedded directly for Windows bash compatibility)
+ICON_MODEL=$'\xef\x92\x89'   # U+F489 nf-fa-microchip
+ICON_FOLDER=$'\xef\x81\xbb'  # U+F07B nf-fa-folder
+ICON_CTX=$'\xef\x83\x91'     # U+F0D1 nf-fa-pie-chart (fallback, BMP-safe)
+ICON_RATE=$'\xef\x83\xa7'    # U+F0E7 nf-fa-bolt
+ICON_VIM_I=$'\xef\x81\x80'   # U+F040 nf-fa-pencil
+ICON_VIM_N=$'\xef\x84\xa0'   # U+F120 nf-fa-terminal
 
 # ── extract fields ────────────────────────────────────────────────────────────
 model=$(echo "$input" | jq -r '.model.display_name // "Claude"')
@@ -94,7 +98,7 @@ C_RESET='\033[0m'
 # ── Segment 1: Model (yellow bg, black fg) ────────────────────────────────────
 printf '\033[48;2;243;174;53m'   # bg yellow
 printf '\033[38;2;38;43;68m'     # fg black
-printf ' %s %s ' "$ICON_SPARK" "$short_model"
+printf ' %s %s ' "$ICON_MODEL" "$short_model"
 
 # ── Separator 1→2 ─────────────────────────────────────────────────────────────
 printf '\033[48;2;240;118;35m'   # next bg orange
@@ -132,7 +136,7 @@ if [ -n "$used_pct" ]; then
   # Segment 3: Context
   printf '\033[48;2;%s;%s;%sm' "$next_bg_r" "$next_bg_g" "$next_bg_b"
   printf '\033[38;2;%s;%s;%sm' "$ctx_fg_r" "$ctx_fg_g" "$ctx_fg_b"
-  printf ' %s ctx:%s%% ' "$ICON_BOLT" "$int_used"
+  printf ' %s %s%% ' "$ICON_CTX" "$int_used"
 
   last_bg_r=$next_bg_r; last_bg_g=$next_bg_g; last_bg_b=$next_bg_b
 else
@@ -158,7 +162,7 @@ if [ -n "$rate_text" ]; then
   # Segment: rate limits (blue bg, white fg)
   printf '\033[48;2;75;149;233m'
   printf '\033[38;2;38;43;68m'              # fg black
-  printf ' %s %s ' "$ICON_EYE" "$rate_text"
+  printf ' %s %s ' "$ICON_RATE" "$rate_text"
 
   last_bg_r=75; last_bg_g=149; last_bg_b=233
 fi
@@ -178,10 +182,17 @@ if [ -n "$vim_mode" ]; then
   printf '\033[38;2;%s;%s;%sm' "$last_bg_r" "$last_bg_g" "$last_bg_b"
   printf '%s' "$SEP"
 
+  # Pick icon based on mode
+  if [ "$vim_mode" = "INSERT" ]; then
+    vim_icon=$ICON_VIM_I
+  else
+    vim_icon=$ICON_VIM_N
+  fi
+
   # Segment
   printf '\033[48;2;%s;%s;%sm' "$vim_bg_r" "$vim_bg_g" "$vim_bg_b"
   printf '\033[38;2;%s;%s;%sm' "$vim_fg_r" "$vim_fg_g" "$vim_fg_b"
-  printf ' %s ' "$vim_mode"
+  printf ' %s %s ' "$vim_icon" "$vim_mode"
 
   last_bg_r=$vim_bg_r; last_bg_g=$vim_bg_g; last_bg_b=$vim_bg_b
 fi
