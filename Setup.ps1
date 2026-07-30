@@ -4,15 +4,15 @@ Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 
 choco feature enable -n allowGlobalConfirmation
 
-choco install nerd-fonts-cascadiacode
-choco install microsoft-windows-terminal
-choco install git
-choco install powershell-core
-choco install oh-my-posh
-choco install vim
-choco install kdiff3
-choco install gh
-choco install bat
+choco install git -y
+choco install nerd-fonts-cascadiacode -y
+choco install microsoft-windows-terminal -y
+choco install powershell-core -y
+choco install oh-my-posh -y
+choco install vim -y
+choco install kdiff3 -y
+choco install gh -y 
+choco install bat -y
 
 Install-Module Terminal-Icons
 Install-Module z -AllowClobber
