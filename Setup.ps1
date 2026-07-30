@@ -13,10 +13,10 @@ choco install vim -y
 choco install kdiff3 -y
 choco install gh -y 
 choco install bat -y
-choco install kubernetes-cli -y
 choco install azure-cli -y
 choco install chatgpt -y
 choco install awscli -y
+choco install kubernetes-cli -y
 
 Install-Module Terminal-Icons
 Install-Module z -AllowClobber
