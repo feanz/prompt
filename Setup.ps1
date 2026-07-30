@@ -21,7 +21,6 @@ choco install kubernetes-cli -y
 Install-Module Terminal-Icons
 Install-Module z -AllowClobber
 
-.\Set-WindowsExplorerOptions.ps1 -EnableShowHiddenFilesFoldersDrives
-.\Set-WindowsExplorerOptions.ps1 -EnableShowFileExtensions
-.\Set-WindowsExplorerOptions.ps1 -EnableShowProtectedOSFiles
+ import-module .\Set-WindowsExplorerOptions.ps1 -Force
+Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowFileExtensions -EnableShowProtectedOSFiles 
 

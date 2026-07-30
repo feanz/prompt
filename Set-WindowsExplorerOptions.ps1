@@ -74,6 +74,7 @@ https://boxstarter.org
 
 #>
 
+
     [CmdletBinding()]
     param(
         [switch]$EnableShowHiddenFilesFoldersDrives,
@@ -113,7 +114,7 @@ https://boxstarter.org
     $cabinetStateKey = "$key\CabinetState"
     $ribbonKey = "$key\Ribbon"
 
-    Write-BoxstarterMessage "Setting Windows Explorer options..."
+    Write-Host "Setting Windows Explorer options..."
 
     if(Test-Path -Path $key) {
         if($EnableShowRecentFilesInQuickAccess) {Set-ItemProperty $key ShowRecent 1}
@@ -156,5 +157,22 @@ https://boxstarter.org
         if($DisableShowRibbon) {Set-ItemProperty $ribbonKey MinimizedStateTabletModeOff 1}
     }
 
-    Restart-Explorer
+    ##Restart-Explorer
+     try{
+        Write-Host "Restarting the Windows Explorer process..."
+        $user = Get-CurrentUser
+        try { $explorer = Get-Process -Name explorer -ErrorAction stop -IncludeUserName }
+        catch {$global:error.RemoveAt(0)}
+
+        if($explorer -ne $null) {
+            $explorer | ? { $_.UserName -eq "$($user.Domain)\$($user.Name)"} | Stop-Process -Force -ErrorAction Stop | Out-Null
+        }
+
+        Start-Sleep 1
+
+        if(!(Get-Process -Name explorer -ErrorAction SilentlyContinue)) {
+            $global:error.RemoveAt(0)
+            start-Process -FilePath explorer
+        }
+    } catch {$global:error.RemoveAt(0)}
 }
