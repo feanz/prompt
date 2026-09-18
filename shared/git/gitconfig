@@ -1,0 +1,23 @@
+[include]
+	path = ~/.config/prompt/git-aliases
+	path = ~/.config/prompt/git-platform
+
+[init]
+	defaultBranch = main
+
+[fetch]
+	prune = true
+	pruneTags = true
+
+[pull]
+	ff = only
+
+[push]
+	autoSetupRemote = true
+	default = current
+
+[rerere]
+	enabled = true
+
+[mergetool]
+	keepBackup = false

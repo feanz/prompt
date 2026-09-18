@@ -1,0 +1,17 @@
+[core]
+	autocrlf = true
+	editor = vim
+
+[merge]
+	tool = kdiff3
+
+[mergetool "kdiff3"]
+	path = C:/Program Files/KDiff3/kdiff3.exe
+	trustExitCode = false
+
+[diff]
+	guitool = kdiff3
+
+[difftool "kdiff3"]
+	path = C:/Program Files/KDiff3/kdiff3.exe
+	trustExitCode = false
