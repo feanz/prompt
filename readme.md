@@ -1,108 +1,76 @@
 # Cross-platform terminal setup
 
-This repository contains the repeatable terminal, prompt, Git, and application setup for Windows and macOS.
+This repository configures the same terminal experience on Windows and macOS: **WezTerm** launches **PowerShell 7**, which renders the shared **Oh My Posh** theme.
+
+The WezTerm styling, prompt, PowerShell behavior, and Fastfetch setup are adapted from [`deja666/wezterm-dotfiles`](https://github.com/deja666/wezterm-dotfiles). See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for attribution.
 
 ## Repository structure
 
 ```text
 .
-├── macos/                  # Homebrew, Ghostty, and zsh
-├── windows/                # Chocolatey, Windows Terminal, and PowerShell
-├── shared/                 # Git, Oh My Posh, and portable integrations
-└── docs/                   # System audits and design notes
+├── shared/
+│   ├── wezterm/          # Common terminal configuration
+│   ├── powershell/       # Common profile and profile installer
+│   ├── oh-my-posh/       # Common stealth prompt theme
+│   ├── fastfetch/        # Common system-information configuration
+│   ├── git/              # Common Git defaults and aliases
+│   └── claude/           # Portable Claude Code status line
+├── macos/                # Homebrew manifest and macOS bootstrap
+├── windows/              # Chocolatey bootstrap and Windows preferences
+└── docs/                 # System audits and design notes
 ```
 
-The platform setup scripts install their package manifests and connect platform-specific shells to the same Git configuration and Oh My Posh theme.
+## Shared terminal behavior
 
-## Shared configuration
+- WezTerm uses GeistMono Nerd Font, the upstream dark colour palette, tab styling, pane shortcuts, and right-side working-directory/time status.
+- PowerShell 7 is the default program on both operating systems.
+- The shared PowerShell profile loads Oh My Posh, `posh-git`, `PSReadLine`, `Terminal-Icons`, and `z`.
+- Fastfetch uses the shared custom logo and module list.
+- Shared Git settings are included without replacing machine-local identity or credentials.
 
-The following files are used on both platforms:
+On macOS, WezTerm adds the appropriate Homebrew prefix and the full .NET SDK to its child-process `PATH`. On Windows, it resolves `pwsh.exe` from the installed PowerShell package.
 
-- `shared/git/gitconfig` contains portable Git defaults. It deliberately excludes user name, email, credentials, line-ending policy, and editor choice.
-- `shared/git/git-aliases` contains the existing common Git alias library, with GitHub-opening commands made portable through `gh`.
-- `shared/oh-my-posh/theme.omp.json` is the prompt theme used by zsh and PowerShell.
-- `shared/claude/statusline-command.sh` is the portable Claude Code status line.
+## macOS setup
 
-The shared config includes a platform layer from `macos/git/gitconfig` or `windows/git/gitconfig` for line endings, editor, and merge-tool behavior. Each setup registers the shared config rather than replacing the user's global `.gitconfig`. Personal identity and credentials therefore remain machine-local:
-
-```shell
-git config --global user.name "Your Name"
-git config --global user.email "you@example.com"
-```
-
-## macOS
-
-Requirements:
-
-- macOS on Apple Silicon or Intel
-- Homebrew
-- Git checkout of this repository
-
-Run:
+Install [Homebrew](https://brew.sh), clone this repository, then run:
 
 ```shell
 ./macos/setup.sh
 ```
 
-The script:
+The script applies `macos/Brewfile`, installs the PowerShell modules, links shared configuration into `~/.config`, and registers the shared Git include. Existing config destinations are moved to timestamped backups before replacement.
 
-1. Applies `macos/Brewfile` with `brew bundle`.
-2. Links the shared theme and Git files into `~/.config/prompt`.
-3. Backs up and links the managed `.zprofile`, `.zshrc`, and Ghostty config.
-4. Registers the shared Git config with the user's global Git configuration.
+See [macos/README.md](macos/README.md) for details.
 
-Existing managed-file destinations are backed up with a timestamp before replacement. Restart Ghostty or open a new login shell afterward.
+## Windows setup
 
-The Brewfile reflects the explicit formulae, casks, and VS Code extensions found in the 2026-09-17 Mac audit. Go is intentionally omitted because it was an orphaned dependency. The shell prefers the SDK from the `dotnet-sdk` cask over the runtime installed as a dependency of Homebrew PowerShell.
-
-See [macos/README.md](macos/README.md) for configuration details.
-
-## Windows
-
-Requirements:
-
-- Windows PowerShell or PowerShell 7 running as an administrator
-- Chocolatey
-- Git checkout of this repository
-
-Run:
+Install [Chocolatey](https://chocolatey.org/install), clone this repository, then run an elevated PowerShell session:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass
 .\windows\setup.ps1
 ```
 
-To replace Windows Terminal settings with the repository version, request that separately:
+The script installs or upgrades the Chocolatey package set, copies shared configuration into the user's `.config` directory, installs the PowerShell modules, registers the shared Git include, and applies the Explorer preferences.
 
-```powershell
-.\windows\setup.ps1 -InstallTerminalSettings
+See [windows/README.md](windows/README.md) for details.
+
+## Personal Git identity
+
+The repository deliberately excludes Git identity and credentials. Configure them per machine:
+
+```shell
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
 ```
-
-That option backs up existing terminal settings first. The script otherwise installs or upgrades the Chocolatey packages, installs the PowerShell modules, copies managed shared configuration to `~/.config/prompt`, connects the PowerShell profile, applies Explorer preferences, and registers the Git include.
-
-See [windows/README.md](windows/README.md) for configuration details.
 
 ## Validation
 
-Useful checks after changing configuration:
-
 ```shell
 bash -n macos/setup.sh
-zsh -n macos/zsh/.zprofile macos/zsh/.zshrc
-jq empty shared/oh-my-posh/theme.omp.json windows/terminal/settings.json
+jq empty shared/oh-my-posh/stealth.omp.json
+wezterm --config-file shared/wezterm/wezterm.lua show-keys
 brew bundle check --file macos/Brewfile
 ```
 
-On a machine with PowerShell:
-
-```powershell
-$errors = $null
-[System.Management.Automation.Language.Parser]::ParseFile(
-    (Resolve-Path '.\windows\setup.ps1'),
-    [ref]$null,
-    [ref]$errors
-) > $null
-$errors
-```
-
-The original Mac discovery and package analysis is recorded in [docs/mac-system-audit.md](docs/mac-system-audit.md).
+The original Mac discovery is retained in [docs/mac-system-audit.md](docs/mac-system-audit.md) as a historical record of the setup that preceded WezTerm.

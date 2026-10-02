@@ -37,13 +37,16 @@ backup_and_link() {
 printf 'Installing Homebrew dependencies from %s\n' "$script_dir/Brewfile"
 brew bundle --file "$script_dir/Brewfile"
 
-backup_and_link "$repo_root/shared/oh-my-posh/theme.omp.json" "$config_root/theme.omp.json"
+backup_and_link "$repo_root/shared/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
+backup_and_link "$repo_root/shared/oh-my-posh/stealth.omp.json" "$HOME/.config/oh-my-posh/stealth.omp.json"
+backup_and_link "$repo_root/shared/powershell/profile.ps1" "$config_root/powershell/profile.ps1"
+backup_and_link "$repo_root/shared/fastfetch/config.jsonc" "$HOME/.config/fastfetch/config.jsonc"
+backup_and_link "$repo_root/shared/fastfetch/logo.txt" "$HOME/.config/fastfetch/logo.txt"
 backup_and_link "$repo_root/shared/git/gitconfig" "$config_root/gitconfig"
 backup_and_link "$repo_root/shared/git/git-aliases" "$config_root/git-aliases"
 backup_and_link "$script_dir/git/gitconfig" "$config_root/git-platform"
-backup_and_link "$script_dir/zsh/.zprofile" "$HOME/.zprofile"
-backup_and_link "$script_dir/zsh/.zshrc" "$HOME/.zshrc"
-backup_and_link "$script_dir/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config.ghostty"
+
+pwsh -NoProfile -File "$repo_root/shared/powershell/install-profile.ps1"
 
 git_include="$config_root/gitconfig"
 if ! git config --global --get-all include.path 2>/dev/null | grep -Fqx "$git_include"; then
@@ -51,4 +54,4 @@ if ! git config --global --get-all include.path 2>/dev/null | grep -Fqx "$git_in
   printf 'Added shared Git configuration to the global include list.\n'
 fi
 
-printf '\nMac setup complete. Restart Ghostty or start a new login shell.\n'
+printf '\nMac setup complete. Restart WezTerm to load the shared configuration.\n'

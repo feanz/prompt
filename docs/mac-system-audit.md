@@ -2,6 +2,8 @@
 
 Audit date: 2026-09-17
 
+> Historical note: this audit captured the original Ghostty and zsh setup. The repository subsequently standardized on WezTerm with PowerShell across macOS and Windows.
+
 This is a read-only inventory of the current Mac terminal and Homebrew setup. It is intended to be the input to a later repository restructure and Mac bootstrap implementation; it does not yet declare every discovered package to be part of the desired standard setup.
 
 ## Executive summary

@@ -2,20 +2,20 @@ tap "jandedobbeleer/oh-my-posh"
 
 # Command-line tools
 brew "gh"
+brew "fastfetch"
 brew "git"
 brew "htop"
 brew "node"
 brew "powershell"
-brew "zsh-autosuggestions"
 brew "jandedobbeleer/oh-my-posh/oh-my-posh", trusted: true
 
 # Terminal and developer applications
 cask "docker-desktop"
 cask "dotnet-sdk"
-cask "font-jetbrains-mono-nerd-font"
-cask "ghostty"
+cask "font-geist-mono-nerd-font"
 cask "rider"
 cask "visual-studio-code"
+cask "wezterm"
 
 # Desktop applications in the audited setup
 cask "chatgpt"

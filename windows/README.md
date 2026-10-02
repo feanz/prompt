@@ -7,29 +7,18 @@ Set-ExecutionPolicy -Scope Process Bypass
 .\windows\setup.ps1
 ```
 
-The script installs or upgrades the configured Chocolatey packages, installs `Terminal-Icons` and `z`, configures the shared Git include, and adds the repository-managed profile to the PowerShell profile.
-
-## Windows Terminal
-
-The terminal settings are not replaced by default. To install them:
-
-```powershell
-.\windows\setup.ps1 -InstallTerminalSettings
-```
-
-The current settings file is copied to a timestamped backup before replacement. Windows Terminal must have been launched at least once so its settings directory exists.
+The script installs or upgrades the existing Windows toolset plus WezTerm, GeistMono Nerd Font, PowerShell 7, Oh My Posh, and Fastfetch. Windows Terminal and Cascadia Code are no longer part of the managed setup.
 
 ## Managed configuration
 
-The setup copies these files to `~/.config/prompt`:
+The setup copies these shared files into the user's `.config` directory:
 
-- Shared Oh My Posh theme
-- Shared Git config and aliases
-- Windows-specific Git line-ending, editor, and KDiff3 settings
-- PowerShell prompt profile
+- WezTerm configuration
+- Oh My Posh stealth theme
+- PowerShell profile
+- Fastfetch configuration and logo
+- Git defaults, aliases, and Windows-specific settings
 
-It then adds a single dot-source line to the user's PowerShell profile. Re-run setup after pulling changes so copied files are refreshed.
+The shared PowerShell installer installs `posh-git`, `PSReadLine`, `Terminal-Icons`, and `z`, then adds one dot-source line to PowerShell 7's `CurrentUserAllHosts` profile.
 
-The Explorer helper enables hidden files, file extensions, and protected operating system files, then attempts to restart Explorer for the current user.
-
-![Configured Windows prompt](assets/prompt.png)
+Re-run setup after pulling changes so the copied Windows configuration is refreshed. The Explorer helper continues to enable hidden files, file extensions, and protected operating-system files.
