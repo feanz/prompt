@@ -72,7 +72,7 @@ config.initial_rows = 30
 config.font = wezterm.font_with_fallback {
   { family = 'GeistMono Nerd Font', weight = 'Regular' },
 }
-config.font_size = 10.0
+config.font_size = 20.0
 config.line_height = 1.1
 config.cell_width = 1.0
 config.freetype_load_flags = 'NO_HINTING'

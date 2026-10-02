@@ -1,6 +1,6 @@
 # Third-party notices
 
-Parts of the WezTerm, PowerShell, Oh My Posh, and Fastfetch configuration are adapted from [`deja666/wezterm-dotfiles`](https://github.com/deja666/wezterm-dotfiles), commit `dfce3719b07820141965d2a549dd1c7cd536d0f5`.
+Parts of the WezTerm, PowerShell, and Fastfetch configuration are adapted from [`deja666/wezterm-dotfiles`](https://github.com/deja666/wezterm-dotfiles), commit `dfce3719b07820141965d2a549dd1c7cd536d0f5`.
 
 MIT License
 

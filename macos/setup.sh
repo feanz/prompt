@@ -38,7 +38,7 @@ printf 'Installing Homebrew dependencies from %s\n' "$script_dir/Brewfile"
 brew bundle --file "$script_dir/Brewfile"
 
 backup_and_link "$repo_root/shared/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
-backup_and_link "$repo_root/shared/oh-my-posh/stealth.omp.json" "$HOME/.config/oh-my-posh/stealth.omp.json"
+backup_and_link "$repo_root/shared/oh-my-posh/theme.omp.json" "$HOME/.config/oh-my-posh/theme.omp.json"
 backup_and_link "$repo_root/shared/powershell/profile.ps1" "$config_root/powershell/profile.ps1"
 backup_and_link "$repo_root/shared/fastfetch/config.jsonc" "$HOME/.config/fastfetch/config.jsonc"
 backup_and_link "$repo_root/shared/fastfetch/logo.txt" "$HOME/.config/fastfetch/logo.txt"

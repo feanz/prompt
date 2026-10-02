@@ -48,7 +48,7 @@ New-Item -ItemType Directory -Path (Join-Path $HOME '.config\oh-my-posh') -Force
 New-Item -ItemType Directory -Path (Join-Path $HOME '.config\fastfetch') -Force | Out-Null
 
 Copy-Item (Join-Path $repoRoot 'shared\wezterm\wezterm.lua') (Join-Path $HOME '.config\wezterm\wezterm.lua') -Force
-Copy-Item (Join-Path $repoRoot 'shared\oh-my-posh\stealth.omp.json') (Join-Path $HOME '.config\oh-my-posh\stealth.omp.json') -Force
+Copy-Item (Join-Path $repoRoot 'shared\oh-my-posh\theme.omp.json') (Join-Path $HOME '.config\oh-my-posh\theme.omp.json') -Force
 Copy-Item (Join-Path $repoRoot 'shared\powershell\profile.ps1') (Join-Path $configRoot 'powershell\profile.ps1') -Force
 Copy-Item (Join-Path $repoRoot 'shared\fastfetch\config.jsonc') (Join-Path $HOME '.config\fastfetch\config.jsonc') -Force
 Copy-Item (Join-Path $repoRoot 'shared\fastfetch\logo.txt') (Join-Path $HOME '.config\fastfetch\logo.txt') -Force

@@ -1,7 +1,7 @@
 # Adapted from https://github.com/deja666/wezterm-dotfiles at commit
 # dfce3719b07820141965d2a549dd1c7cd536d0f5. See THIRD_PARTY_NOTICES.md.
 
-$theme = Join-Path $HOME '.config/oh-my-posh/stealth.omp.json'
+$theme = Join-Path $HOME '.config/oh-my-posh/theme.omp.json'
 
 if ((Get-Command oh-my-posh -ErrorAction SilentlyContinue) -and (Test-Path $theme)) {
     oh-my-posh init pwsh --config $theme | Invoke-Expression

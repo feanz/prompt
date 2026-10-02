@@ -11,7 +11,7 @@ The WezTerm styling, prompt, PowerShell behavior, and Fastfetch setup are adapte
 ├── shared/
 │   ├── wezterm/          # Common terminal configuration
 │   ├── powershell/       # Common profile and profile installer
-│   ├── oh-my-posh/       # Common stealth prompt theme
+│   ├── oh-my-posh/       # Common prompt theme
 │   ├── fastfetch/        # Common system-information configuration
 │   ├── git/              # Common Git defaults and aliases
 │   └── claude/           # Portable Claude Code status line
@@ -68,7 +68,7 @@ git config --global user.email "you@example.com"
 
 ```shell
 bash -n macos/setup.sh
-jq empty shared/oh-my-posh/stealth.omp.json
+jq empty shared/oh-my-posh/theme.omp.json
 wezterm --config-file shared/wezterm/wezterm.lua show-keys
 brew bundle check --file macos/Brewfile
 ```

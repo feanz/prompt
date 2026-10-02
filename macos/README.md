@@ -19,7 +19,7 @@
 | Repository file | Destination |
 | --- | --- |
 | `shared/wezterm/wezterm.lua` | `~/.config/wezterm/wezterm.lua` |
-| `shared/oh-my-posh/stealth.omp.json` | `~/.config/oh-my-posh/stealth.omp.json` |
+| `shared/oh-my-posh/theme.omp.json` | `~/.config/oh-my-posh/theme.omp.json` |
 | `shared/powershell/profile.ps1` | `~/.config/prompt/powershell/profile.ps1` |
 | `shared/fastfetch/config.jsonc` | `~/.config/fastfetch/config.jsonc` |
 | `shared/fastfetch/logo.txt` | `~/.config/fastfetch/logo.txt` |
