@@ -20,7 +20,7 @@ choco feature enable -n allowGlobalConfirmation
 $packages = @(
     'git'
     'fastfetch'
-    'nerd-fonts-geistmono'
+    'nerd-fonts-jetbrainsmono'
     'wezterm'
     'powershell-core'
     'oh-my-posh'

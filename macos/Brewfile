@@ -12,7 +12,7 @@ brew "jandedobbeleer/oh-my-posh/oh-my-posh", trusted: true
 # Terminal and developer applications
 cask "docker-desktop"
 cask "dotnet-sdk"
-cask "font-geist-mono-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
 cask "rider"
 cask "visual-studio-code"
 cask "wezterm"
