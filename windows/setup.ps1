@@ -27,6 +27,7 @@ $packages = @(
     'vim'
     'kdiff3'
     'gh'
+    'terraform'
     'bat'
     'azure-cli'
     'chatgpt'
