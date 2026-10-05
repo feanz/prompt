@@ -1,0 +1,61 @@
+# Shared Git aliases captured from the existing setup. Shell-backed aliases use
+# commands available in macOS and Git for Windows. GitHub links use the gh CLI.
+
+[alias]
+	abort = rebase --abort
+	aliases = "!git config -l | grep alias | cut -c 7-"
+	amend = commit -a --amend
+
+	# Delete branches merged into the supplied branch (main by default).
+	bclean = "!f() { git branch --merged ${1-main} | grep -v \" ${1-main}$\" | xargs git branch -d; }; f"
+	# Switch to a branch, update it, and delete its merged branches.
+	bdone = "!f() { git checkout ${1-main} && git up && git bclean ${1-main}; }; f"
+	br = branch -a
+	branches = branch -a
+	browse = !gh browse
+	open = !gh browse
+	churn = !git --no-pager log --name-only --oneline | grep -v ' ' | sort | uniq -c | sort -nr | head
+	cleanup = clean -xdf -e *.DotSettings* -e s3_keys.ps1
+	cm = !git add -A && git commit -m
+	com = !git add -A && git commit
+	co = checkout
+	cob = checkout -b
+	conflicts = !git diff --name-only --diff-filter=U
+	cp = cherry-pick
+	delete = branch -d
+	discard = checkout --
+	ec = config --global -e
+	find = "!git ls-files | grep -i"
+	graph = log --graph -10 --branches --remotes --tags --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+	grep = grep -Ii
+	hist = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	history = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	latest = log -1 --stat
+	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	lost = fsck --lost-found
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	lg = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	migrate = "!f(){ CURRENT=$(git symbolic-ref --short HEAD); git checkout -b $1 && git branch --force $CURRENT ${3-$CURRENT@{u}} && git rebase --onto ${2-main} $CURRENT; }; f"
+	po = push origin
+	pof = push origin --force
+	pr = !gh pr view --web
+	publish = "!f() { git push origin $1 && git push drafts :$1 && git browse; }; f"
+	rba = rebase --abort
+	rbc = "!f(){ git add -A && git rebase --continue; }; f"
+	re = "!f(){ git fetch origin && git rebase origin/${1-main}; }; f"
+	remotes = remote -v
+	restore = "!f(){ git add -A && git commit -qm 'RESTORE SAVEPOINT'; git reset $1 --hard; }; f"
+	ri = "!f(){ git fetch origin && git rebase --interactive origin/${1-main}; }; f"
+	save = !git add -A && git commit -m 'SAVEPOINT'
+	set-origin = remote set-url origin
+	set-upstream = remote set-url upstream
+	st = status
+	stashes = stash list
+	sync = !git pull --rebase && git push
+	tags = log --tags --no-walk --date=iso-local --pretty='%C(auto)%h %cd%d %s'
+	undo = reset HEAD~1 --mixed
+	unstage = reset -q HEAD --
+	up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+	wip = commit -am "WIP"
+	clear = checkout -- .
+	wipe = "!f() { rev=$(git rev-parse ${1-HEAD}); git add -A && git commit --allow-empty -qm 'WIPE SAVEPOINT' && git reset $rev --hard; }; f"
