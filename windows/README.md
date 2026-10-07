@@ -7,7 +7,7 @@ Set-ExecutionPolicy -Scope Process Bypass
 .\windows\setup.ps1
 ```
 
-The script installs or upgrades the existing Windows toolset plus WezTerm, JetBrains Mono Nerd Font, PowerShell 7, Oh My Posh, Fastfetch, and Terraform. Windows Terminal and Cascadia Code are no longer part of the managed setup.
+The script installs or upgrades the existing Windows toolset, including Azure CLI, plus WezTerm, JetBrains Mono Nerd Font, PowerShell 7, Oh My Posh, Fastfetch, and Terraform. Windows Terminal and Cascadia Code are no longer part of the managed setup.
 
 ## Managed configuration
 
