@@ -2,6 +2,7 @@ tap "jandedobbeleer/oh-my-posh"
 tap "hashicorp/tap"
 
 # Command-line tools
+brew "azure-cli"
 brew "gh"
 brew "fastfetch"
 brew "git"
