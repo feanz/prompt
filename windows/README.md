@@ -1,6 +1,6 @@
 # Windows setup
 
-Run `setup.ps1` from an elevated PowerShell session after installing Chocolatey.
+Run `setup.ps1` from an elevated PowerShell session after installing Chocolatey and WinGet (provided by App Installer in the Microsoft Store).
 
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass
@@ -8,6 +8,8 @@ Set-ExecutionPolicy -Scope Process Bypass
 ```
 
 The script installs or upgrades the existing Windows toolset, including Azure CLI, plus WezTerm, JetBrains Mono Nerd Font, PowerShell 7, Oh My Posh, Fastfetch, and Terraform. Windows Terminal and Cascadia Code are no longer part of the managed setup.
+
+T3 Code is installed or upgraded separately through WinGet using the exact package ID `T3Tools.T3Code`. Repeat runs also succeed when no upgrade is available.
 
 ## Managed configuration
 
