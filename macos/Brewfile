@@ -17,10 +17,12 @@ cask "docker-desktop"
 cask "dotnet-sdk"
 cask "font-jetbrains-mono-nerd-font"
 cask "rider"
+cask "t3-code"
 cask "visual-studio-code"
 cask "wezterm"
 
 # Desktop applications in the audited setup
+cask "alt-tab"
 cask "chatgpt"
 cask "microsoft-outlook"
 cask "microsoft-teams"

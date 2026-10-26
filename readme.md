@@ -44,14 +44,14 @@ See [macos/README.md](macos/README.md) for details.
 
 ## Windows setup
 
-Install [Chocolatey](https://chocolatey.org/install), clone this repository, then run an elevated PowerShell session:
+Install [Chocolatey](https://chocolatey.org/install) and WinGet (App Installer from the Microsoft Store), clone this repository, then run an elevated PowerShell session:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass
 .\windows\setup.ps1
 ```
 
-The script installs or upgrades the Chocolatey package set, copies shared configuration into the user's `.config` directory, installs the PowerShell modules, registers the shared Git include, and applies the Explorer preferences.
+The script installs or upgrades the Chocolatey package set and T3 Code through WinGet, copies shared configuration into the user's `.config` directory, installs the PowerShell modules, registers the shared Git include, and applies the Explorer preferences.
 
 See [windows/README.md](windows/README.md) for details.
 

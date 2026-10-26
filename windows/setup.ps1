@@ -14,6 +14,10 @@ if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
     throw 'Chocolatey is required. Install it from https://chocolatey.org/install and run this script again.'
 }
 
+if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
+    throw 'WinGet is required to install T3 Code. Install App Installer from the Microsoft Store and run this script again.'
+}
+
 Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
 choco feature enable -n allowGlobalConfirmation
 
@@ -40,6 +44,11 @@ foreach ($package in $packages) {
     if ($LASTEXITCODE -notin @(0, 1641, 3010)) {
         throw "Chocolatey failed while installing or upgrading '$package' (exit code $LASTEXITCODE)."
     }
+}
+
+winget install --id T3Tools.T3Code --exact --source winget --accept-package-agreements --accept-source-agreements --disable-interactivity
+if ($LASTEXITCODE -notin @(0, [int]0x8A15002B)) {
+    throw "WinGet failed while installing or upgrading T3 Code (exit code $LASTEXITCODE)."
 }
 
 New-Item -ItemType Directory -Path $configRoot -Force | Out-Null
