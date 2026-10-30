@@ -10,46 +10,23 @@ if (-not $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Adm
     throw 'Run this setup from an elevated PowerShell session.'
 }
 
-if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
-    throw 'Chocolatey is required. Install it from https://chocolatey.org/install and run this script again.'
-}
-
 if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
-    throw 'WinGet is required to install T3 Code. Install App Installer from the Microsoft Store and run this script again.'
+    throw 'WinGet is required. Install App Installer from the Microsoft Store and run this script again.'
 }
 
 Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
-choco feature enable -n allowGlobalConfirmation
 
-$packages = @(
-    'git'
-    'fastfetch'
-    'nerd-fonts-jetbrainsmono'
-    'wezterm'
-    'powershell-core'
-    'oh-my-posh'
-    'vim'
-    'kdiff3'
-    'gh'
-    'terraform'
-    'bat'
-    'azure-cli'
-    'chatgpt'
-    'awscli'
-    'kubernetes-cli'
-)
-
-foreach ($package in $packages) {
-    choco upgrade $package --yes --no-progress
-    if ($LASTEXITCODE -notin @(0, 1641, 3010)) {
-        throw "Chocolatey failed while installing or upgrading '$package' (exit code $LASTEXITCODE)."
-    }
-}
-
-winget install --id T3Tools.T3Code --exact --source winget --accept-package-agreements --accept-source-agreements --disable-interactivity
+$packagesPath = Join-Path $PSScriptRoot 'packages.json'
+winget import --import-file $packagesPath --accept-package-agreements --accept-source-agreements --disable-interactivity
 if ($LASTEXITCODE -notin @(0, [int]0x8A15002B)) {
-    throw "WinGet failed while installing or upgrading T3 Code (exit code $LASTEXITCODE)."
+    throw "WinGet failed while importing '$packagesPath' (exit code $LASTEXITCODE)."
 }
+
+$env:Path = @(
+    [Environment]::GetEnvironmentVariable('Path', 'Machine')
+    [Environment]::GetEnvironmentVariable('Path', 'User')
+    $env:Path
+) -join ';'
 
 New-Item -ItemType Directory -Path $configRoot -Force | Out-Null
 New-Item -ItemType Directory -Path (Join-Path $configRoot 'powershell') -Force | Out-Null
@@ -77,6 +54,9 @@ if (-not $pwsh) {
 }
 
 & $pwshPath -NoProfile -File (Join-Path $repoRoot 'shared\powershell\install-profile.ps1')
+if ($LASTEXITCODE -ne 0) {
+    throw "PowerShell profile setup failed (exit code $LASTEXITCODE)."
+}
 
 $gitConfigPath = Join-Path $configRoot 'gitconfig'
 if (Get-Command git -ErrorAction SilentlyContinue) {

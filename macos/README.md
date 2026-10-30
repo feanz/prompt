@@ -31,6 +31,12 @@ The PowerShell installer adds one dot-source line to PowerShell 7's `CurrentUser
 
 Correct symlinks are left untouched on repeat runs. Conflicting managed destinations are moved to timestamped backups.
 
+## Re-running setup
+
+Re-run `./macos/setup.sh` after pulling updates. `brew bundle` installs missing dependencies and upgrades outdated listed packages; it is not add-only and versions are not pinned. It does not uninstall applications removed from the Brewfile. Existing managed symlinks already point at the latest repository files, while conflicting files are backed up before linking. Missing PowerShell modules are installed without upgrading existing ones, and the profile line and Git include are added only if absent. Repository edits affect linked configuration immediately; repeat runs do not reset application data or sign-in state.
+
 AltTab is installed on macOS through the `alt-tab` Homebrew cask.
+
+Claude Code CLI is installed through the `claude-code` Homebrew cask. After setup, run `claude` and follow the sign-in prompts. Homebrew installations do not auto-update; re-run setup or use `brew upgrade --cask claude-code` to update.
 
 The Brewfile retains the previously audited developer and desktop applications while replacing Ghostty with WezTerm and standardising the shared terminal font on JetBrains Mono Nerd Font. It also installs T3 Code through the `t3-code` cask, Azure CLI, Fastfetch, and Terraform, with Terraform sourced from HashiCorp's official Homebrew tap. It installs current available versions rather than pinning the audited versions.
