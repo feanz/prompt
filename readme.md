@@ -16,7 +16,7 @@ The WezTerm styling, prompt, PowerShell behavior, and Fastfetch setup are adapte
 │   ├── git/              # Common Git defaults and aliases
 │   └── claude/           # Portable Claude Code status line
 ├── macos/                # Homebrew manifest and macOS bootstrap
-├── windows/              # Chocolatey bootstrap and Windows preferences
+├── windows/              # WinGet manifest, bootstrap, and Windows preferences
 └── docs/                 # System audits and design notes
 ```
 
@@ -44,16 +44,20 @@ See [macos/README.md](macos/README.md) for details.
 
 ## Windows setup
 
-Install [Chocolatey](https://chocolatey.org/install) and WinGet (App Installer from the Microsoft Store), clone this repository, then run an elevated PowerShell session:
+Install WinGet (App Installer from the Microsoft Store), clone this repository, then run an elevated PowerShell session:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass
 .\windows\setup.ps1
 ```
 
-The script installs or upgrades the Chocolatey package set and T3 Code through WinGet, copies shared configuration into the user's `.config` directory, installs the PowerShell modules, registers the shared Git include, and applies the Explorer preferences.
+The script imports `windows/packages.json` through WinGet, copies shared configuration into the user's `.config` directory, installs the PowerShell modules, registers the shared Git include, and applies the Explorer preferences. Chocolatey is no longer required.
 
 See [windows/README.md](windows/README.md) for details.
+
+## Re-running setup
+
+Both setup scripts are intended to be re-run after pulling updates. They install missing packages and attempt upgrades of listed packages, rather than reinstalling everything or removing unrelated software. They are not strictly add-only: Windows overwrites the managed configuration copies, macOS keeps managed symlinks (backing up conflicts), and the scripts reapply their settings. PowerShell modules are installed only when missing, and profile/Git include entries are not duplicated. See the platform READMEs for details, including the one-time Chocolatey-to-WinGet migration caveat on older Windows setups.
 
 ## Personal Git identity
 

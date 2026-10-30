@@ -13,6 +13,7 @@ brew "hashicorp/tap/terraform"
 brew "jandedobbeleer/oh-my-posh/oh-my-posh", trusted: true
 
 # Terminal and developer applications
+cask "claude-code"
 cask "docker-desktop"
 cask "dotnet-sdk"
 cask "font-jetbrains-mono-nerd-font"
