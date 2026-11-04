@@ -30,6 +30,26 @@ The WezTerm styling, prompt, PowerShell behavior, and Fastfetch setup are adapte
 
 On macOS, WezTerm adds the appropriate Homebrew prefix and the full .NET SDK to its child-process `PATH`. On Windows, it resolves `pwsh.exe` from the installed PowerShell package.
 
+## File and folder icons
+
+[Terminal-Icons](https://github.com/devblackops/Terminal-Icons) is part of the standard PowerShell setup on both Windows and macOS. The shared installer installs it from PowerShell Gallery for the current user when missing, and the shared profile imports it in each new PowerShell session. Existing module versions are preserved on setup reruns.
+
+In a new WezTerm PowerShell tab, run `Get-ChildItem` (or `ls` / `dir`) to see file and folder icons. Icons require a Nerd Font; the managed WezTerm configuration already uses JetBrains Mono Nerd Font. Terminal-Icons applies to PowerShell listings; it does not add icons to zsh or bash.
+
+The shared profile explicitly aliases `ls` to `Get-ChildItem` on both platforms. PowerShell on macOS otherwise runs the native `ls`, which bypasses Terminal-Icons. Use PowerShell parameters such as `ls -Force` to include hidden files; use `/bin/ls` on macOS when you need native flags such as `-la`.
+
+To enable it in an existing PowerShell session without running the full machine setup:
+
+```powershell
+if (-not (Get-Module -ListAvailable -Name Terminal-Icons)) {
+    Install-Module -Name Terminal-Icons -Repository PSGallery -Scope CurrentUser
+}
+Import-Module -Name Terminal-Icons
+Get-ChildItem
+```
+
+The managed profile handles future sessions. For a machine without that profile, add `Import-Module -Name Terminal-Icons` to `$PROFILE` once. If icons are missing, check `Get-Module Terminal-Icons` and ensure the terminal uses a Nerd Font.
+
 ## macOS setup
 
 Install [Homebrew](https://brew.sh), clone this repository, then run:

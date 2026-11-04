@@ -13,6 +13,10 @@ foreach ($module in @('posh-git', 'Terminal-Icons', 'z')) {
     }
 }
 
+# PowerShell on macOS leaves ls mapped to the native executable by default.
+# Use PowerShell objects so Terminal-Icons can format directory listings.
+Set-Alias -Name ls -Value Get-ChildItem
+
 if ($Host.Name -eq 'ConsoleHost' -and (Get-Module -ListAvailable -Name PSReadLine)) {
     Import-Module PSReadLine
     Set-PSReadLineOption -PredictionSource History

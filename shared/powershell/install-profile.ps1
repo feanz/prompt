@@ -11,7 +11,7 @@ if ($gallery -and $gallery.InstallationPolicy -ne 'Trusted') {
 
 foreach ($module in $modules) {
     if (-not (Get-Module -ListAvailable -Name $module)) {
-        Install-Module -Name $module -Scope CurrentUser -Force -AllowClobber
+        Install-Module -Name $module -Repository PSGallery -Scope CurrentUser -Force -AllowClobber
     }
 }
 
