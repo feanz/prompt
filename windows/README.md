@@ -9,11 +9,15 @@ Set-ExecutionPolicy -Scope Process Bypass
 
 The script imports `packages.json`, the Windows equivalent of `macos/Brewfile`. This declares the Windows toolset, including Azure CLI, WezTerm, JetBrains Mono Nerd Font, PowerShell 7, Oh My Posh, Fastfetch, Terraform, Claude Code CLI, and T3 Code. Add or remove package entries in this file rather than editing PowerShell installation commands. Versions are not pinned. Windows Terminal and Cascadia Code are no longer part of the managed setup.
 
+Packages that support machine-wide installation specify `"Scope": "machine"` in the manifest. Desktop installers use their normal system locations, generally under `%ProgramFiles%` or `%ProgramFiles(x86)%`, and fonts use the Windows font directory. Portable tools such as Fastfetch, Terraform, bat, kubectl, and Claude Code use WinGet's machine-wide default, `%ProgramFiles%\WinGet\Packages`, with command links in `%ProgramFiles%\WinGet\Links`. Custom WinGet path settings still apply. Oh My Posh and ChatGPT use Windows-managed MSIX/AppX locations; T3 Code retains its vendor installer default because its WinGet manifest does not declare machine-scope support. No custom install directory is forced.
+
 To apply only the package list, without copying configuration or applying Explorer settings:
 
 ```powershell
 winget import --import-file .\windows\packages.json --accept-package-agreements --accept-source-agreements --disable-interactivity
 ```
+
+Run the package-only import from an elevated PowerShell session too, since the manifest requests machine-wide installations.
 
 Claude Code CLI uses `Anthropic.ClaudeCode`; T3 Code uses `T3Tools.T3Code`. After setup, open a new terminal, run `claude`, and follow the sign-in prompts. WinGet installations of Claude Code do not auto-update; re-run setup or use `winget upgrade --id Anthropic.ClaudeCode --exact` to update. The manifest includes Git for Windows, providing Git Bash for Claude Code.
 
@@ -22,6 +26,7 @@ Claude Code CLI uses `Anthropic.ClaudeCode`; T3 Code uses `T3Tools.T3Code`. Afte
 Setup is designed to be re-run after pulling repository updates, but it is not an add-only operation:
 
 - WinGet installs missing listed applications and attempts available upgrades for recognised installations. Already-current packages are skipped. Applications not in the manifest are not upgraded or uninstalled by the import, although package dependencies may also be installed or updated.
+- Changing scope does not move existing installations. To move a tool previously installed under your user profile, close any running instances and uninstall that copy using its original package manager, then re-run setup to install it with the manifest's machine scope. For WinGet portable tools, run `winget uninstall --id <PackageIdentifier> --exact --scope user --preserve` from a non-elevated PowerShell session, then run setup from an elevated session. An import may otherwise retain the existing installation or install a separate machine-wide copy.
 - The script refreshes its process PATH after installation so newly installed tools can be found; restart your terminal after setup for other sessions to pick up changes.
 - Managed configuration files are copied again, overwriting local edits at those destinations. Keep customisations in the repository if they should survive setup.
 - Missing PowerShell modules are installed; existing modules are not automatically upgraded. The managed profile line and Git include are added only if absent, and the same Explorer settings are reapplied.
