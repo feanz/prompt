@@ -24,7 +24,6 @@
         { "PackageIdentifier": "OpenAI.ChatGPT" },
         { "PackageIdentifier": "Amazon.AWSCLI", "Scope": "machine" },
         { "PackageIdentifier": "Kubernetes.kubectl", "Scope": "machine" },
-        { "PackageIdentifier": "Anthropic.ClaudeCode", "Scope": "machine" },
         { "PackageIdentifier": "T3Tools.T3Code" }
       ]
     }

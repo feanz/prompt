@@ -28,6 +28,8 @@ $env:Path = @(
     $env:Path
 ) -join ';'
 
+& (Join-Path $PSScriptRoot 'install-claude.ps1')
+
 New-Item -ItemType Directory -Path $configRoot -Force | Out-Null
 New-Item -ItemType Directory -Path (Join-Path $configRoot 'powershell') -Force | Out-Null
 New-Item -ItemType Directory -Path (Join-Path $HOME '.config\wezterm') -Force | Out-Null
