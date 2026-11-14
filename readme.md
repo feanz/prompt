@@ -71,7 +71,7 @@ Set-ExecutionPolicy -Scope Process Bypass
 .\windows\setup.ps1
 ```
 
-The script imports `windows/packages.json` through WinGet, copies shared configuration into the user's `.config` directory, installs the PowerShell modules, registers the shared Git include, and applies the Explorer preferences. Chocolatey is no longer required.
+The script imports `windows/packages.json` through WinGet, installs Claude Code with Anthropic's native installer, copies shared configuration into the user's `.config` directory, installs the PowerShell modules, registers the shared Git include, and applies the Explorer preferences. Claude Code uses automatic updates and its user installation directory is added to PATH. Chocolatey is no longer required.
 
 See [windows/README.md](windows/README.md) for details.
 
