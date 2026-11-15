@@ -19,6 +19,12 @@ winget import --import-file .\windows\packages.json --accept-package-agreements 
 
 Run the package-only import from an elevated PowerShell session too, since the manifest requests machine-wide installations. This imports only WinGet packages; it does not install or update Claude Code.
 
+## 1Password CLI
+
+The manifest installs 1Password CLI (`op`) through `AgileBits.1Password.CLI` with machine scope, using WinGet's standard portable-tool locations. After setup, restart your terminal and run `op --version` to verify the installation.
+
+To authenticate through the 1Password desktop app, install and sign in to the app if needed, enable Windows Hello, then enable **Settings > Developer > Integrate with 1Password CLI**. Run `op vault list` to authenticate. See the [official getting-started guide](https://developer.1password.com/docs/cli/get-started/) for details. Setup installs the CLI only; desktop app installation and account sign-in remain manual.
+
 ## Claude Code and ChatGPT
 
 Claude Code uses [Anthropic's recommended native Windows installer](https://code.claude.com/docs/en/setup#install-claude-code), `https://claude.ai/install.ps1`, with the `latest` target. Native installations automatically update; WinGet installations require manual upgrades and can lag behind upstream releases. Setup downloads the official installer to a temporary file and runs it in a separate PowerShell process so installer failures stop setup cleanly. It verifies the installed executable, adds `%USERPROFILE%\.local\bin` to the user and current-process PATH if absent, and warns if another `claude` command takes precedence. It does not change the machine PATH. Re-running setup runs the native installer again.
