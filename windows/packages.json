@@ -18,6 +18,7 @@
         { "PackageIdentifier": "vim.vim", "Scope": "machine" },
         { "PackageIdentifier": "KDE.KDiff3", "Scope": "machine" },
         { "PackageIdentifier": "GitHub.cli", "Scope": "machine" },
+        { "PackageIdentifier": "AgileBits.1Password.CLI", "Scope": "machine" },
         { "PackageIdentifier": "Hashicorp.Terraform", "Scope": "machine" },
         { "PackageIdentifier": "sharkdp.bat", "Scope": "machine" },
         { "PackageIdentifier": "Microsoft.AzureCLI", "Scope": "machine" },

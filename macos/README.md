@@ -33,6 +33,12 @@ The PowerShell installer adds one dot-source line to PowerShell 7's `CurrentUser
 
 Correct symlinks are left untouched on repeat runs. Conflicting managed destinations are moved to timestamped backups.
 
+## 1Password CLI
+
+The Brewfile installs 1Password CLI (`op`) through the `1password-cli` Homebrew cask. After setup, run `op --version` to verify the installation.
+
+To authenticate through the 1Password desktop app, install and sign in to the app if needed, then enable **Settings > Developer > Integrate with 1Password CLI**. Run `op vault list` to authenticate; enable Touch ID in the app if you want fingerprint authentication. See the [official getting-started guide](https://developer.1password.com/docs/cli/get-started/) for details. Setup installs the CLI only; desktop app installation and account sign-in remain manual.
+
 ## Re-running setup
 
 Re-run `./macos/setup.sh` after pulling updates. `brew bundle` installs missing dependencies and upgrades outdated listed packages; it is not add-only and versions are not pinned. It does not uninstall applications removed from the Brewfile. Existing managed symlinks already point at the latest repository files, while conflicting files are backed up before linking. Missing PowerShell modules are installed without upgrading existing ones, and the profile line and Git include are added only if absent. Repository edits affect linked configuration immediately; repeat runs do not reset application data or sign-in state.
