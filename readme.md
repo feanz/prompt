@@ -59,7 +59,7 @@ Install [Homebrew](https://brew.sh), clone this repository, then run:
 ./macos/setup.sh
 ```
 
-The script applies `macos/Brewfile`, installs the PowerShell modules, links shared configuration into `~/.config`, and registers the shared Git include. Existing config destinations are moved to timestamped backups before replacement.
+The script applies `macos/Brewfile`, installs dotnetup with Microsoft's downloader, installs the PowerShell modules, links shared configuration into `~/.config`, and registers the shared Git include. Existing config destinations are moved to timestamped backups before replacement.
 
 See [macos/README.md](macos/README.md) for details.
 
@@ -72,7 +72,7 @@ Set-ExecutionPolicy -Scope Process Bypass
 .\windows\setup.ps1
 ```
 
-The script imports `windows/packages.json` through WinGet, installs Claude Code with Anthropic's native installer, copies shared configuration into the user's `.config` directory, installs the PowerShell modules, registers the shared Git include, and applies the Explorer preferences. Claude Code uses automatic updates and its user installation directory is added to PATH. Chocolatey is no longer required.
+The script imports `windows/packages.json` through WinGet, installs Claude Code with Anthropic's native installer and dotnetup with Microsoft's downloader, copies shared configuration into the user's `.config` directory, installs the PowerShell modules, registers the shared Git include, and applies the Explorer preferences. Claude Code uses automatic updates. Both tools' user installation directories are added to PATH. Chocolatey is no longer required.
 
 See [windows/README.md](windows/README.md) for details.
 

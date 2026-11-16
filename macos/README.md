@@ -1,6 +1,6 @@
 # macOS setup
 
-`setup.sh` uses Homebrew for applications and command-line tools, then links the repository-managed configuration into the current user's home directory.
+`setup.sh` uses Homebrew for applications and command-line tools, installs dotnetup with Microsoft's downloader, then links the repository-managed configuration into the current user's home directory.
 
 ## Requirements
 
@@ -38,6 +38,14 @@ Correct symlinks are left untouched on repeat runs. Conflicting managed destinat
 The Brewfile installs 1Password CLI (`op`) through the `1password-cli` Homebrew cask. After setup, run `op --version` to verify the installation.
 
 To authenticate through the 1Password desktop app, install and sign in to the app if needed, then enable **Settings > Developer > Integrate with 1Password CLI**. Run `op vault list` to authenticate; enable Touch ID in the app if you want fingerprint authentication. See the [official getting-started guide](https://developer.1password.com/docs/cli/get-started/) for details. Setup installs the CLI only; desktop app installation and account sign-in remain manual.
+
+## dotnetup
+
+Setup installs the latest public preview of [dotnetup](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnetup/getting-started) into `~/.dotnetup` when absent, using Microsoft's checksum-verifying downloader. It adds that directory to PATH in `${ZDOTDIR:-$HOME}/.zshrc` without duplicating the entry or replacing existing configuration. The shared PowerShell profile also adds it to PATH, including in WezTerm sessions.
+
+To configure only dotnetup, run `bash ./macos/install-dotnetup.sh`. Open a new terminal and run `dotnetup --version` to verify it. Run `dotnetup init` separately to choose SDKs and an access mode; setup does not initialise or migrate SDKs. The existing Homebrew .NET SDK remains installed.
+
+Repeat runs preserve an existing dotnetup executable. Use `dotnetup self update` to update the tool itself.
 
 ## Re-running setup
 

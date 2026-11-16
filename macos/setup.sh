@@ -44,6 +44,8 @@ fi
 printf 'Installing Homebrew dependencies from %s\n' "$script_dir/Brewfile"
 brew bundle --file "$script_dir/Brewfile"
 
+bash "$script_dir/install-dotnetup.sh"
+
 backup_and_link "$repo_root/shared/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
 backup_and_link "$repo_root/shared/oh-my-posh/theme.omp.json" "$HOME/.config/oh-my-posh/theme.omp.json"
 backup_and_link "$repo_root/shared/powershell/profile.ps1" "$config_root/powershell/profile.ps1"
