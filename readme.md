@@ -25,6 +25,7 @@ The WezTerm styling, prompt, PowerShell behavior, and Fastfetch setup are adapte
 - WezTerm uses JetBrains Mono Nerd Font, the upstream dark colour palette, tab styling, pane shortcuts, and right-side working-directory/time status.
 - PowerShell 7 is the default program on both operating systems.
 - The shared PowerShell profile loads Oh My Posh, `posh-git`, `PSReadLine`, `Terminal-Icons`, and `z`.
+- The prompt shows Node.js only in folders containing `package.json`, and .NET only in folders containing `*.csproj`; parent and child folders do not count.
 - Fastfetch uses the shared custom logo and module list.
 - Shared Git settings are included without replacing machine-local identity or credentials.
 

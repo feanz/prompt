@@ -51,6 +51,10 @@
         {
           "background": "#6CA35E",
           "foreground": "#ffffff",
+          "options": {
+            "display_mode": "files",
+            "extensions": ["package.json"]
+          },
           "powerline_symbol": "",
           "style": "powerline",
           "template": "  {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
@@ -59,6 +63,10 @@
         {
           "background": "#512BD4",
           "foreground": "#ffffff",
+          "options": {
+            "display_mode": "files",
+            "extensions": ["*.csproj"]
+          },
           "powerline_symbol": "",
           "style": "powerline",
           "template": " .NET {{ .Full }} ",
