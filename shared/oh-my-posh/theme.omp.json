@@ -57,6 +57,14 @@
           "type": "node"
         },
         {
+          "background": "#512BD4",
+          "foreground": "#ffffff",
+          "powerline_symbol": "",
+          "style": "powerline",
+          "template": " .NET {{ .Full }} ",
+          "type": "dotnet"
+        },
+        {
           "background": "#ffff66",
           "foreground": "#193549",
           "powerline_symbol": "",
