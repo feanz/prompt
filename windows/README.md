@@ -27,7 +27,9 @@ To authenticate through the 1Password desktop app, install and sign in to the ap
 
 ## Claude Code and ChatGPT
 
-Claude Code uses [Anthropic's recommended native Windows installer](https://code.claude.com/docs/en/setup#install-claude-code), `https://claude.ai/install.ps1`, with the `latest` target. Native installations automatically update; WinGet installations require manual upgrades and can lag behind upstream releases. Setup downloads the official installer to a temporary file and runs it in a separate PowerShell process so installer failures stop setup cleanly. It verifies the installed executable, adds `%USERPROFILE%\.local\bin` to the user and current-process PATH if absent, and warns if another `claude` command takes precedence. It does not change the machine PATH. Re-running setup runs the native installer again.
+Claude Code uses [Anthropic's recommended native Windows installer](https://code.claude.com/docs/en/setup#install-claude-code), `https://claude.ai/install.ps1`, with the `latest` target. Native installations automatically update. WinGet offers [`Anthropic.ClaudeCode`](https://github.com/microsoft/winget-pkgs/tree/master/manifests/a/Anthropic/ClaudeCode), but has no separate latest-channel package equivalent to Homebrew's `claude-code@latest`. Its published versions can lag behind upstream releases, and WinGet installations do not auto-update by default. This setup keeps the native installer to follow the latest channel with automatic updates.
+
+Setup downloads the official installer to a temporary file and runs it in a separate PowerShell process so installer failures stop setup cleanly. It verifies the installed executable, adds `%USERPROFILE%\.local\bin` to the user and current-process PATH if absent, and warns if another `claude` command takes precedence. It does not change the machine PATH. Re-running setup runs the native installer again.
 
 To install or refresh only Claude Code, run this from PowerShell as your normal user (elevation is not required):
 

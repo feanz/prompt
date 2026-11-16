@@ -78,7 +78,7 @@ See [windows/README.md](windows/README.md) for details.
 
 ## Re-running setup
 
-Both setup scripts are intended to be re-run after pulling updates. They install missing packages and attempt upgrades of listed packages, rather than reinstalling everything or removing unrelated software. They are not strictly add-only: Windows overwrites the managed configuration copies, macOS keeps managed symlinks (backing up conflicts), and the scripts reapply their settings. PowerShell modules are installed only when missing, and profile/Git include entries are not duplicated. See the platform READMEs for details, including the one-time Chocolatey-to-WinGet migration caveat on older Windows setups.
+Both setup scripts are intended to be re-run after pulling updates. They install missing packages and attempt upgrades of listed packages, rather than reinstalling everything or removing unrelated software. They are not strictly add-only: Windows overwrites the managed configuration copies, macOS keeps managed symlinks (backing up conflicts), and the scripts reapply their settings. macOS setup also replaces the stable Claude Code cask with `claude-code@latest`, preserving Claude's user data. PowerShell modules are installed only when missing, and profile/Git include entries are not duplicated. See the platform READMEs for details, including the one-time Chocolatey-to-WinGet migration caveat on older Windows setups.
 
 ## Personal Git identity
 

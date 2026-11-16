@@ -34,6 +34,13 @@ backup_and_link() {
   printf 'Linked %s -> %s\n' "$destination_path" "$source_path"
 }
 
+# The stable and latest Claude Code casks conflict. Preserve user data by
+# uninstalling the old cask without --zap before bundle installs its replacement.
+if brew list --cask claude-code >/dev/null 2>&1; then
+  printf 'Switching Claude Code from the stable cask to claude-code@latest.\n'
+  brew uninstall --cask claude-code
+fi
+
 printf 'Installing Homebrew dependencies from %s\n' "$script_dir/Brewfile"
 brew bundle --file "$script_dir/Brewfile"
 
