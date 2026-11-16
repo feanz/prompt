@@ -45,6 +45,8 @@ Re-run `./macos/setup.sh` after pulling updates. `brew bundle` installs missing 
 
 AltTab is installed on macOS through the `alt-tab` Homebrew cask.
 
-Claude Code CLI is installed through the `claude-code` Homebrew cask. After setup, run `claude` and follow the sign-in prompts. Homebrew installations do not auto-update; re-run setup or use `brew upgrade --cask claude-code` to update.
+Claude Code CLI is installed through the [`claude-code@latest` Homebrew cask](https://formulae.brew.sh/cask/claude-code@latest), which tracks Anthropic's latest release channel. The unqualified `claude-code` cask tracks stable, which is typically about a week behind. Setup replaces an existing stable cask before installing the latest cask; it uninstalls without `--zap`, preserving Claude settings and session history.
+
+After setup, run `claude --version` to verify the installed version, then run `claude` and follow the sign-in prompts. Homebrew installations do not auto-update by default; re-run setup or use `brew upgrade --cask claude-code@latest` to update. See [Anthropic's installation and update guidance](https://code.claude.com/docs/en/setup#install-claude-code).
 
 The Brewfile retains the previously audited developer and desktop applications while replacing Ghostty with WezTerm and standardising the shared terminal font on JetBrains Mono Nerd Font. It also installs T3 Code through the `t3-code` cask, Azure CLI, Fastfetch, and Terraform, with Terraform sourced from HashiCorp's official Homebrew tap. It installs current available versions rather than pinning the audited versions.

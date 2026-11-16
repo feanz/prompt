@@ -14,7 +14,7 @@ brew "jandedobbeleer/oh-my-posh/oh-my-posh", trusted: true
 
 # Terminal and developer applications
 cask "1password-cli"
-cask "claude-code"
+cask "claude-code@latest"
 cask "docker-desktop"
 cask "dotnet-sdk"
 cask "font-jetbrains-mono-nerd-font"
