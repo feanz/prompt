@@ -29,6 +29,7 @@ $env:Path = @(
 ) -join ';'
 
 & (Join-Path $PSScriptRoot 'install-claude.ps1')
+& (Join-Path $PSScriptRoot 'install-dotnetup.ps1')
 
 New-Item -ItemType Directory -Path $configRoot -Force | Out-Null
 New-Item -ItemType Directory -Path (Join-Path $configRoot 'powershell') -Force | Out-Null
