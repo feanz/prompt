@@ -112,6 +112,7 @@ wezterm.on('format-tab-title', function(tab)
 end)
 
 config.keys = {
+  { key = 't', mods = 'CTRL', action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
   { key = 't', mods = 'CTRL|SHIFT', action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
   { key = 'w', mods = 'CTRL|SHIFT', action = wezterm.action.CloseCurrentTab { confirm = true } },
   { key = 'Tab', mods = 'CTRL', action = wezterm.action.ActivateTabRelative(1) },
@@ -125,6 +126,18 @@ config.keys = {
   { key = '=', mods = 'CTRL', action = wezterm.action.IncreaseFontSize },
   { key = '-', mods = 'CTRL', action = wezterm.action.DecreaseFontSize },
   { key = '0', mods = 'CTRL', action = wezterm.action.ResetFontSize },
+  {
+    key = 'c',
+    mods = 'CTRL',
+    action = wezterm.action_callback(function(window, pane)
+      if window:get_selection_text_for_pane(pane) ~= '' then
+        window:perform_action(wezterm.action.CopyTo 'Clipboard', pane)
+        window:perform_action(wezterm.action.ClearSelection, pane)
+      else
+        window:perform_action(wezterm.action.SendKey { key = 'c', mods = 'CTRL' }, pane)
+      end
+    end),
+  },
   { key = 'c', mods = 'CTRL|SHIFT', action = wezterm.action.CopyTo 'Clipboard' },
   { key = 'v', mods = 'CTRL', action = wezterm.action.PasteFrom 'Clipboard' },
   { key = 'v', mods = 'CTRL|SHIFT', action = wezterm.action.PasteFrom 'Clipboard' },
