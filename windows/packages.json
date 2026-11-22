@@ -23,9 +23,9 @@
         { "PackageIdentifier": "sharkdp.bat", "Scope": "machine" },
         { "PackageIdentifier": "Microsoft.AzureCLI", "Scope": "machine" },
         { "PackageIdentifier": "OpenAI.ChatGPT" },
+        { "PackageIdentifier": "Tailscale.Tailscale", "Scope": "machine" },
         { "PackageIdentifier": "Amazon.AWSCLI", "Scope": "machine" },
-        { "PackageIdentifier": "Kubernetes.kubectl", "Scope": "machine" },
-        { "PackageIdentifier": "T3Tools.T3Code" }
+        { "PackageIdentifier": "Kubernetes.kubectl", "Scope": "machine" }
       ]
     }
   ]

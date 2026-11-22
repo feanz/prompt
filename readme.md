@@ -13,8 +13,7 @@ The WezTerm styling, prompt, PowerShell behavior, and Fastfetch setup are adapte
 │   ├── powershell/       # Common profile and profile installer
 │   ├── oh-my-posh/       # Common prompt theme
 │   ├── fastfetch/        # Common system-information configuration
-│   ├── git/              # Common Git defaults and aliases
-│   └── claude/           # Portable Claude Code status line
+│   └── git/              # Common Git defaults and aliases
 ├── macos/                # Homebrew manifest and macOS bootstrap
 ├── windows/              # WinGet manifest, bootstrap, and Windows preferences
 └── docs/                 # System audits and design notes
@@ -72,13 +71,21 @@ Set-ExecutionPolicy -Scope Process Bypass
 .\windows\setup.ps1
 ```
 
-The script imports `windows/packages.json` through WinGet, installs Claude Code with Anthropic's native installer and dotnetup with Microsoft's downloader, copies shared configuration into the user's `.config` directory, installs the PowerShell modules, registers the shared Git include, and applies the Explorer preferences. Claude Code uses automatic updates. Both tools' user installation directories are added to PATH. Chocolatey is no longer required.
+The script imports `windows/packages.json` through WinGet, installs T3 Code nightly and RustDesk with checksum-verified official installers and dotnetup with Microsoft's downloader, copies shared configuration into the user's `.config` directory, installs the PowerShell modules, registers the shared Git include, and applies the Explorer preferences. The dotnetup directory is added to PATH. Chocolatey is no longer required.
 
 See [windows/README.md](windows/README.md) for details.
 
 ## Re-running setup
 
-Both setup scripts are intended to be re-run after pulling updates. They install missing packages and attempt upgrades of listed packages, rather than reinstalling everything or removing unrelated software. They are not strictly add-only: Windows overwrites the managed configuration copies, macOS keeps managed symlinks (backing up conflicts), and the scripts reapply their settings. macOS setup also replaces the stable Claude Code cask with `claude-code@latest`, preserving Claude's user data. PowerShell modules are installed only when missing, and profile/Git include entries are not duplicated. See the platform READMEs for details, including the one-time Chocolatey-to-WinGet migration caveat on older Windows setups.
+Both setup scripts are intended to be re-run after pulling updates. They install missing packages and attempt upgrades of listed packages, rather than reinstalling everything or removing unrelated software. They are not strictly add-only: Windows overwrites the managed configuration copies, macOS keeps managed symlinks (backing up conflicts), and the scripts reapply their settings. PowerShell modules are installed only when missing, and profile/Git include entries are not duplicated. See the platform READMEs for details, including the one-time Chocolatey-to-WinGet migration caveat on older Windows setups.
+
+## T3 Code nightly
+
+Both platforms install the nightly desktop application by default: Mac uses `t3-code@nightly`, and Windows uses `windows/install-t3-code.ps1` to download and verify the official nightly installer. Close T3 Code before running setup to update it, then open **T3 Code (Nightly)**. Connect Codex with ChatGPT through **Settings > Providers** using T3's managed runtime. Claude Code still requires a [separate installation](https://code.claude.com/docs/en/setup) and `claude auth login` before enabling it in T3. This repository no longer manages those agents or their configuration; existing installations and data are preserved. The platform READMEs cover updates and existing stable installations.
+
+## Remote access
+
+Tailscale and RustDesk are default applications on both platforms. Windows installs Tailscale through WinGet and RustDesk through a checksum-verified official MSI helper; Mac installs both desktop apps through Homebrew. Open Tailscale after setup to sign in and RustDesk to finish first-run configuration, including macOS permissions. RustDesk uses standard public-server defaults on fresh installs, and existing app settings are preserved. See [remote-access configuration](docs/remote-access.md) for instructions and verification.
 
 ## Personal Git identity
 

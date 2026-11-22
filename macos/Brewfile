@@ -14,12 +14,11 @@ brew "jandedobbeleer/oh-my-posh/oh-my-posh", trusted: true
 
 # Terminal and developer applications
 cask "1password-cli"
-cask "claude-code@latest"
 cask "docker-desktop"
 cask "dotnet-sdk"
 cask "font-jetbrains-mono-nerd-font"
 cask "rider"
-cask "t3-code"
+cask "t3-code@nightly"
 cask "visual-studio-code"
 cask "wezterm"
 
@@ -29,6 +28,10 @@ cask "chatgpt"
 cask "microsoft-outlook"
 cask "microsoft-teams"
 cask "wispr-flow"
+
+# Networking and remote access
+cask "tailscale-app"
+cask "rustdesk"
 
 # VS Code extension installation is temporarily disabled while diagnosing the
 # Homebrew bundle setup. Uncomment these entries to restore extension management.
