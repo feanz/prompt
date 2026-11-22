@@ -28,8 +28,9 @@ $env:Path = @(
     $env:Path
 ) -join ';'
 
-& (Join-Path $PSScriptRoot 'install-claude.ps1')
+& (Join-Path $PSScriptRoot 'install-t3-code.ps1')
 & (Join-Path $PSScriptRoot 'install-dotnetup.ps1')
+& (Join-Path $PSScriptRoot 'install-rustdesk.ps1')
 
 New-Item -ItemType Directory -Path $configRoot -Force | Out-Null
 New-Item -ItemType Directory -Path (Join-Path $configRoot 'powershell') -Force | Out-Null
@@ -75,3 +76,5 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
 Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowFileExtensions -EnableShowProtectedOSFiles
 
 Write-Host 'Windows setup complete. Restart WezTerm to load the shared configuration.'
+Write-Host 'Remote access: open Tailscale to sign in and RustDesk to finish setup. See docs/remote-access.md.'
+Write-Host 'Open T3 Code (Nightly) to connect Codex. Install Claude Code separately and run claude auth login; see windows/README.md.'
